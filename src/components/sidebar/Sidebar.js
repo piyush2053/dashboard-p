@@ -70,8 +70,6 @@ export function SidebarResponsive(props) {
   const btnRef = React.useRef();
 
   const { routes } = props;
-  // let isWindows = navigator.platform.startsWith("Win");
-  //  BRAND
 
   return (
     <Flex display={{ sm: "flex", xl: "none" }} alignItems='center'>
@@ -93,12 +91,22 @@ export function SidebarResponsive(props) {
         finalFocusRef={btnRef}>
         <DrawerOverlay />
         <DrawerContent w='285px' maxW='285px' bg={sidebarBackgroundColor}>
-          <DrawerCloseButton
+          {isOpen ? <DrawerCloseButton
             zIndex='3'
             onClose={onClose}
             _focus={{ boxShadow: "none" }}
             _hover={{ boxShadow: "none" }}
+          /> : <Flex ref={btnRef} w='max-content' h='max-content' onClick={onOpen}>
+          <Icon
+            as={IoMenuOutline}
+            color={menuColor}
+            my='auto'
+            w='20px'
+            h='20px'
+            me='10px'
+            _hover={{ cursor: "pointer" }}
           />
+        </Flex>}
           <DrawerBody maxW='285px' px='0rem' pb='0'>
             <Scrollbars
               autoHide
